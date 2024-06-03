@@ -66,7 +66,6 @@ const Layout = ({ children }) => {
         <
         div className = "logo" >
         <
-        h6 className = "text-black bold" > Time to Care < /h6> <
         hr / >
         <
         /div>
@@ -74,7 +73,11 @@ const Layout = ({ children }) => {
 
 
         <
-        div className = "menu" > {
+        div className = "menu" >
+        <
+        h6 className = "text-black bold loo" > TimetoCare < /h6>
+
+        {
             SidebarMenu.map((menu) => {
                 const isActive = location.pathname === menu.path;
                 return ( <

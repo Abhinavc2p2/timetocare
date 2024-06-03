@@ -13,11 +13,19 @@
     height: 30px;
 }
 
-.card-body p {
+.card-body {
     margin: 20px;
-    font-size: 1.1rem;
 }
 
-.card-body b {
-    font-weight: 50px;
+.doctor-info-table {
+    border-collapse: collapse;
+    /* Remove table border */
+}
+
+.doctor-info-table td {
+    padding: 8px;
+}
+
+.doctor-info-table b {
+    font-weight: bold;
 }

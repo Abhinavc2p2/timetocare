@@ -10,13 +10,13 @@
 .sidebar {
     width: 300px;
     border-radius: 5px;
-    background-color: rgba(97, 206, 206, 0.248);
+    background-color: #34a5b0;
     background-repeat: no-repeat;
     background-size: cover;
     box-shadow: 0 0 2px gray;
     margin-right: 20px;
     color: white;
-    height: 1000px;
+    height: 1000vh;
 }
 
 .content {
@@ -28,13 +28,13 @@
     height: 10vh;
     margin-bottom: 20px;
     box-shadow: 0 0 2px gray;
-    background-image: url(https://img.freepik.com/free-vector/clean-medical-background_53876-97927.jpg);
+    background-color: #34a5b0;
     background-size: cover;
     background-attachment: fixed;
 }
 
 .body {
-    height: 85vh;
+    height: 1000vh;
     margin-bottom: 20px;
     box-shadow: 0 0 2px gray;
     background-color: rgb(241, 240, 240);
@@ -170,4 +170,10 @@
 
 .bold {
     font-weight: bold;
+}
+
+.loo {
+    font-size: 2rem;
+    letter-spacing: 0cap;
+    white-space: 0;
 }

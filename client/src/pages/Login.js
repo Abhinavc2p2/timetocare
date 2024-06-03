@@ -1,21 +1,19 @@
 import React from "react";
-import "../styles/RegiserStyles.css";
-import { Form, Input, message } from "antd";
+import { Form, Input, Button, message, Card } from "antd";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../redux/features/alertSlice";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { GoogleLogin } from "react-google-login";
+import "../styles/LoginStyle.css";
 
 const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    //form handler
-    const onfinishHandler = async(values) => {
+
+    const onFinishHandler = async (values) => {
         try {
             dispatch(showLoading());
             const res = await axios.post("/api/v1/user/login", values);
-            window.location.reload();
             dispatch(hideLoading());
             if (res.data.success) {
                 localStorage.setItem("token", res.data.token);
@@ -31,89 +29,41 @@ const Login = () => {
         }
     };
 
-    const responseGoogleSuccess = async(response) => {
-        try {
-            dispatch(showLoading());
-
-            // Send the Google access token to your server for verification
-            const res = await axios.post("/api/v1/user/google-login", {
-                tokenId: response.tokenId,
-            });
-
-            dispatch(hideLoading());
-
-            if (res.data.success) {
-                message.success("Login Successful!");
-                navigate("/dashboard");
-            } else {
-                message.error(res.data.message);
-            }
-        } catch (error) {
-            dispatch(hideLoading());
-            console.error(error);
-            message.error("Something Went Wrong");
-        }
+    const navigateToRegister = () => {
+        navigate("/register");
     };
 
-    const responseGoogleFailure = (error) => {
-        console.error(error);
-        message.error("Google Login Failed");
-    };
     return (
+        <div className="login-container">
 
-        <
-        div className = "block" >
-
-        <
-        div class = "main-text" >
-        Welcome to < span class = "emphasize" > TimeToCare < /span> 🏥 Log in to find your perfect doctor < /
-        div >
-
-
-        <
-        div className = "form-container " >
-        <
-        Form layout = "vertical"
-        onFinish = { onfinishHandler }
-        className = "register-form" >
-        <
-        h3 className = "text-center" > Login From < /h3>
-
-        <
-        Form.Item label = "Email"
-        name = "email" >
-        <
-        Input type = "email"
-        required / >
-        <
-        /Form.Item> <
-        Form.Item label = "Password"
-        name = "password" >
-        <
-        Input type = "password"
-        required / >
-        <
-        /Form.Item> <
-        Link to = "/register"
-        className = "m-4 pageturn" >
-        Not a user Register here <
-        /Link> <
-        button className = "btn btn-primary"
-        type = "submit" >
-        Login <
-        /button> 
-
-
-
-
-        <
-        /
-        Form >
-
-        <
-        /
-        div > <
-        /div>
+<div className="black-background">
+                <h2 className="logo">TimetoCare</h2>
+                <img src='https://imgs.search.brave.com/AAzZUituoS6e_fIHZQtniGY6Zd2erDSWnwQt_8GGbE0/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/cG5nYWxsLmNvbS93/cC1jb250ZW50L3Vw/bG9hZHMvMjAxOC8w/NS9Eb2N0b3ItRnJl/ZS1QTkctSW1hZ2Uu/cG5n' alt="Statue" className="statue-image" />
+                <h2 className="welcome-back-text">New User Get Connected</h2>
+               
+                <Button className="register-button" type="primary" size="large" onClick={navigateToRegister}>
+                    Register
+                </Button>
+            </div>
+            <div className="form-container">
+                <Card className="login-card">
+                    <h2>Login Form</h2>
+                    <Form layout="vertical" onFinish={onFinishHandler}>
+                        <Form.Item label="Email" name="email">
+                            <Input type="email" required />
+                        </Form.Item>
+                        <Form.Item label="Password" name="password">
+                            <Input type="password" required />
+                        </Form.Item>
+                        <Button className="btn-primary" type="primary" htmlType="submit">
+                            Login
+                        </Button>
+                       
+                    </Form>
+                </Card>
+            </div>
+           
+        </div>
     );
 };
 

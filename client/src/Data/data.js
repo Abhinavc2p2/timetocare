@@ -13,11 +13,11 @@ export const userMenu = [{
         path: "/apply-doctor",
         icon: "fa-solid fa-user-doctor",
     },
-    {
-        name: "Profile",
-        path: "/profile",
-        icon: "fa-solid fa-user",
-    },
+    // {
+    //     name: "Profile",
+    //     path: "/profile",
+    //     icon: "fa-solid fa-user",
+    // },
 
     {
         name: "Medi-Cart",
@@ -46,8 +46,13 @@ export const adminMenu = [{
         icon: "fa-solid fa-user",
     },
     {
-        name: "Profile",
-        path: "/profile",
-        icon: "fa-solid fa-user",
+        name: "Adminproduct",
+        path: "/pr",
+        icon: "fa-solid fa-shop",
     },
+    // {
+    //     name: "Profile",
+    //     path: "/profile",
+    //     icon: "fa-solid fa-user",
+    // },
 ];

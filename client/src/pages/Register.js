@@ -1,127 +1,77 @@
 import React from "react";
-import "../styles/RegiserStyles.css";
-import { Form, Input, message } from "antd";
+import { Form, Input, Button, message ,Card} from "antd";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../redux/features/alertSlice";
-import { GoogleLogin } from "react-google-login";
+import "../styles/RegiserStyles.css";
+
 const Register = () => {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    //form handler
-    const onfinishHandler = async(values) => {
-        try {
-            dispatch(showLoading());
-            const res = await axios.post("/api/v1/user/register", values);
-            dispatch(hideLoading());
-            if (res.data.success) {
-                message.success("Register Successfully!");
-                navigate("/login");
-            } else {
-                message.error(res.data.message);
-            }
-        } catch (error) {
-            dispatch(hideLoading());
-            console.log(error);
-            message.error("Something Went Wrong");
-        }
-    };
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-    const responseGoogleSuccess = async(response) => {
-        try {
-            dispatch(showLoading());
+  const onFinishHandler = async (values) => {
+    try {
+      dispatch(showLoading());
+      const res = await axios.post("/api/v1/user/register", values);
+      dispatch(hideLoading());
+      if (res.data.success) {
+        message.success("Register Successful!");
+        navigate("/login");
+      } else {
+        message.error(res.data.message);
+      }
+    } catch (error) {
+      dispatch(hideLoading());
+      console.log(error);
+      message.error("Something went wrong");
+    }
+  };
 
-            // Send the Google access token to your server for verification
-            const res = await axios.post("/api/v1/user/google-login", {
-                tokenId: response.tokenId,
-            });
+  const navigateTologin = () => {
+    navigate("/login");
+};
 
-            dispatch(hideLoading());
+  return (
+    <div className="register-container">
+      <div className="form-container">
+        <Card className="login-card">
 
-            if (res.data.success) {
-                message.success("Login Successful!");
-                navigate("/dashboard");
-            } else {
-                message.error(res.data.message);
-            }
-        } catch (error) {
-            dispatch(hideLoading());
-            console.error(error);
-            message.error("Something Went Wrong");
-        }
-    };
-
-    const responseGoogleFailure = (error) => {
-        console.error(error);
-        message.error("Google Login Failed");
-    };
-
-    return ( <
+        <Form
+          layout="vertical"
+          onFinish={onFinishHandler}
+          className="register-form"
         >
-        <
-        div className = "block " >
-
-        <
-        div class = "main-text" >
-        <
-        span class = "emphasize" > Register Yourself < /span> To<span class="emphasize"> TimeToCare</span > and Begin Your Journey to Better < span class = "emphasize" > Health < /span>! < /
-        div >
-
-        <
-        div className = "form-container " >
-        <
-        Form layout = "vertical"
-        onFinish = { onfinishHandler }
-        className = "register-form" >
-
-        <
-        h3 className = "text-center" > Register From < /h3> <
-        Form.Item label = "Name"
-        name = "name" >
-        <
-        Input type = "text"
-        required / >
-        <
-        /Form.Item> <
-        Form.Item label = "Email"
-        name = "email" >
-        <
-        Input type = "email"
-        required / >
-        <
-        /Form.Item> <
-        Form.Item label = "Password"
-        name = "password" >
-        <
-        Input type = "password"
-        required / >
-        <
-        /Form.Item>
-
-        <
-        Link to = "/login"
-        className = "m-2" >
-        Already user login here <
-        /Link> <
-        button className = "btn btn-primary"
-        type = "submit" >
-        Register <
-        /button>
-
-
-
-
-
-
-        <
-        /Form> 
-
-        <
-        /div> < /
-        div > <
-        />
-    );
+          <h3 className="text-center">Register Form</h3>
+          <Form.Item label="Name" name="name">
+            <Input type="text" placeholder="Enter your name" required />
+          </Form.Item>
+          <Form.Item label="Email" name="email">
+            <Input type="email" placeholder="Enter your email" required />
+          </Form.Item>
+          <Form.Item label="Password" name="password">
+            <Input type="password" placeholder="Enter your password" required />
+          </Form.Item>
+          <Link to="/login" className="login-link">
+            Already a user? Login here
+          </Link>
+          <Button className="btn-primary" type="primary" htmlType="submit">
+            Register
+          </Button>
+        </Form>
+          </Card>
+      </div>
+      <div className="black-background">
+                <img src='https://imgs.search.brave.com/AAzZUituoS6e_fIHZQtniGY6Zd2erDSWnwQt_8GGbE0/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/cG5nYWxsLmNvbS93/cC1jb250ZW50L3Vw/bG9hZHMvMjAxOC8w/NS9Eb2N0b3ItRnJl/ZS1QTkctSW1hZ2Uu/cG5n' alt="Statue" className="statue-image" />
+      <h2 className="logoo">TimetoCare</h2>
+                <h2 className="welcome-back-text">Welcome back to YourWebsite</h2>
+               
+                <Button className="register-button" type="primary" size="large" onClick={navigateTologin}>
+                  Login
+                </Button>
+            </div>
+    </div>
+  );
 };
 
 export default Register;
