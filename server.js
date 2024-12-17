@@ -15,6 +15,9 @@ connectDB();
 //rest obejct
 const app = express();
 
+app.get("/", (req, res) => {
+    res.send("API is live 🎉");
+});
 //middlewares
 app.use(cors());
 app.use(express.json());
