@@ -6,7 +6,6 @@ const connectDB = require("./config/db");
 const cors = require("cors");
 
 // Allow all origins
-app.use(cors());
 //dotenv conig
 dotenv.config();
 
@@ -17,6 +16,7 @@ connectDB();
 const app = express();
 
 //middlewares
+app.use(cors());
 app.use(express.json());
 app.use(moragan("dev"));
 
