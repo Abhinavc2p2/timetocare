@@ -19,11 +19,7 @@ app.get("/", (req, res) => {
     res.send("API is live 🎉");
 });
 //middlewares
-app.use(cors({
-    origin: "https://timetocare.onrender.com", // Replace with your frontend's URL
-    methods: ["GET", "POST"],
-    credentials: true,
-}));
+app.use(cors());
 app.use(express.json());
 app.use(moragan("dev"));
 
@@ -41,14 +37,3 @@ app.listen(port, () => {
         .bgCyan.white
     );
 });
-const API_URL = "https://timetocare.onrender.com/api/v1/user/getUserData";
-fetch(API_URL, {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ userId: "12345" }),
-})
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error("Error:", error));
