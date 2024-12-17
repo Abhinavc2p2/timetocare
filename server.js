@@ -3,7 +3,10 @@ const colors = require("colors");
 const moragan = require("morgan");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
+const cors = require("cors");
 
+// Allow all origins
+app.use(cors());
 //dotenv conig
 dotenv.config();
 
