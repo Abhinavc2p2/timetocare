@@ -14,6 +14,8 @@ const router = express.Router();
 //POST SINGLE DOC INFO
 router.post("/getDoctorInfo", authMiddleware, getDoctorInfoController);
 
+router.get("/getDoctorInfo", authMiddleware, getDoctorInfoController);
+
 //POST UPDATE PROFILE
 router.post("/updateProfile", authMiddleware, updateProfileController);
 
